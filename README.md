@@ -8,7 +8,9 @@ Includes a simple html reporter and the option to send the results to browsersco
 
 Live application (please visit it to add the statistics about your browser):
 
-http://www.doboism.com/projects/webaudio-compatability
+__[http://www.doboism.com/projects/webaudio-compatability](http://www.doboism.com/projects/webaudio-compatability)__
 
 
-License: http://opensource.org/licenses/MIT
+
+-------------------------------------
+[released under MIT license](http://opensource.org/licenses/MIT)
