@@ -268,7 +268,7 @@ function webAudioTest(window) {
       var result = results[i];
       if (result.result !== resultType['header']) {
         //category, action, opt_label, opt_value, opt_noninteraction
-        ga('send', 'event', 'WebAudioCompatability', result.name, resultName[result.result]);
+        ga('send', 'event', 'WebAudioCompatability', resultName[result.result], result.name);
       }
     }
   }
