@@ -260,15 +260,15 @@ function webAudioTest(window) {
   /**
    * log the results to window analytics
    * @param  {Object} results
-   * @param  {Object} analytics Google Analytics queue object (normaly _gaq)
+   * @param  {Object} ga Google Analytics queue object (normaly window.ga)
    * @return {void}
    */
-  function reportToGoogleAnalytics(results, analyticsQueue) {
+  function reportToGoogleAnalytics(results, ga) {
     for (var i = 0; i < results.length; i++) {
       var result = results[i];
       if (result.result !== resultType['header']) {
         //category, action, opt_label, opt_value, opt_noninteraction
-        analyticsQueue.push(['_trackEvent', 'WebAudioCompatability', result.name, resultName[result.result]]);
+        ga('send', 'event', 'WebAudioCompatability', result.name, resultName[result.result]);
       }
     }
   }
