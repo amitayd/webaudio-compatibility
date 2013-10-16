@@ -45,19 +45,19 @@ function webAudioTest(window) {
   var testSuite = {
     desc: 'Is there any support for the Web Audio API (through AudioContext or webKitAudioContext)',
     test: function() {
-      return (typeof helper.audioContext) === 'function';
+      return (typeof helper.audioContext) !== 'undefined';
     },
     subTests: {
       'AudioContext': {
         desc: 'AudioContext function exists',
         test: function() {
-          return (typeof window.AudioContext) === 'function';
+          return ('AudioContext' in window);
         }
       },
       'webKitAudioContext': {
         desc: 'webkitAudioContext function exists (old API)',
         test: function() {
-          return (typeof window.webkitAudioContext) === 'function';
+          return ('webkitAudioContext' in window);
         }
       },
       'createOscillator': {
@@ -69,7 +69,7 @@ function webAudioTest(window) {
           'start': {
             desc: 'createOscillator contains start function',
             test: function() {
-              return (typeof helper.createAudioContext().createOscillator().start === 'function');
+              return ('start' in helper.createAudioContext().createOscillator().start);
             }
           },
           'typeAsEnum': {
