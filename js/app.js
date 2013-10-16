@@ -1,5 +1,5 @@
 /*exported main */
-/*globals webAudioTest, _gaq */
+/*globals webAudioTest, ga */
 
 /**
  * [main description]

@@ -259,6 +259,7 @@ function webAudioTest(window) {
 
   /**
    * log the results to window analytics
+   * 
    * @param  {Object} results
    * @param  {Object} ga Google Analytics queue object (normaly window.ga)
    * @return {void}
@@ -267,8 +268,9 @@ function webAudioTest(window) {
     for (var i = 0; i < results.length; i++) {
       var result = results[i];
       if (result.result !== resultType['header']) {
-        //category, action, opt_label, opt_value, opt_noninteraction
-        ga('send', 'event', 'WebAudioCompatability', resultName[result.result], result.name);
+        //category, action, opt_label, opt_value, opt_noninteraction]
+        var value = (result.result === resultType['pass']) ? 1 : 0;
+        ga('send', 'event', 'WebAudioCompatability', result.name, resultName[result.result], value);
       }
     }
   }
