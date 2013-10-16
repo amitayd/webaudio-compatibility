@@ -257,6 +257,22 @@ function webAudioTest(window) {
 
   }
 
+  /**
+   * log the results to window analytics
+   * @param  {Object} results
+   * @param  {Object} analytics Google Analytics queue object (normaly _gaq)
+   * @return {void}
+   */
+  function reportToGoogleAnalytics(results, analyticsQueue) {
+    for (var i = 0; i < results.length; i++) {
+      var result = results[i];
+      if (result.result !== resultType['header']) {
+        //category, action, opt_label, opt_value, opt_noninteraction
+        analyticsQueue.push(['_trackEvent', 'WebAudioCompatability', result.name, resultName[result.result]]);
+      }
+    }
+  }
+
 
   /**
    * Exports
@@ -265,6 +281,7 @@ function webAudioTest(window) {
     runTests: runTests,
     reportToBrowserScope: reportToBrowserScope,
     createReport: createReport,
+    reportToGoogleAnalytics: reportToGoogleAnalytics
   };
 
 }

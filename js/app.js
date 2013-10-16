@@ -1,5 +1,5 @@
 /*exported main */
-/*globals webAudioTest */
+/*globals webAudioTest, _gaq */
 
 /**
  * [main description]
@@ -20,6 +20,7 @@ function main(settings) {
   // Prevent running the tests on development
   if (window.location.host.indexOf(settings.liveDomain) >= 0) {
     tester.reportToBrowserScope(runResults, settings.browserScopeKey, settings.sandBoxId);
+    tester.reportToGoogleAnalytics(runResults, _gaq);
   }
 
   if (settings.browserScopeContainerId) {
