@@ -67,9 +67,9 @@ function webAudioTest(window) {
         },
         subTests: {
           'start': {
-            desc: 'createOscillator contains start function',
+            desc: 'oscillator object contains start()',
             test: function() {
-              return ('start' in helper.createAudioContext().createOscillator().start);
+              return ('start' in helper.createAudioContext().createOscillator());
             }
           },
           'typeAsEnum': {
