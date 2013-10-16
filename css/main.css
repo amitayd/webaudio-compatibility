@@ -1,0 +1,16 @@
+body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
+
+.html-reporter { font-size: 11px; font-family: Monaco, "Lucida Console", monospace; line-height: 14px; color: #333333; }
+.html-reporter .bar { line-height: 28px; font-size: 14px; display: block; color: black; }
+.html-reporter span {display: inline-block;}
+.html-reporter .name { width: 250px;}
+.html-reporter .errorDetails { width: 150px;}
+.html-reporter .description { width: 300px; font-size:8px; line-height: 8px}
+.html-reporter .result { width: 50px;}
+.html-reporter .fail { background-color: #b03911; }
+.html-reporter .pass { background-color: #a6b779; }
+.html-reporter .ignore { background-color: #bababa; }
+.html-reporter .error { background-color: #bababa; }
+.html-reporter .bar.menu { background-color: #fff; color: #aaaaaa; }
+.html-reporter .bar.menu a { color: #333333; }
+.html-reporter .bar a { color: white; }
