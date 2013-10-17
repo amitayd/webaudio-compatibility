@@ -16,17 +16,17 @@
                   }
                 }
               }
-            },
-          },
+            }
+          }
         },
         'createGain': {
-          alternativeNames: ['createGainNode'],
+          alternativeNames: ['createGainNode']
         },
         'createDelay': {
-          alternativeNames: ['createDelayNode'],
+          alternativeNames: ['createDelayNode']
         },
         'createScriptProcessor': {
-          alternativeNames: ['createJavaScriptNode'],
+          alternativeNames: ['createJavaScriptNode']
         },
         'destination': {},
         'sampleRate': {},
@@ -48,9 +48,9 @@
         'createDynamicsCompressor': {},
         'createPeriodicWave': {
           alternativeNames: ['createWaveTable']
-        },
-      },
-    },
+        }
+      }
+    }
   };
 
 
