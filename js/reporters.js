@@ -166,7 +166,7 @@
     reportToBrowserScope: reportToBrowserScope,
     reportToDom: reportToDom,
     flattenResult: flattenResult,
-    toKeyValue: toKeyValue,
+    toKeyValue: toKeyValue
   };
 
 })(CompatibilityTests.Tester);
