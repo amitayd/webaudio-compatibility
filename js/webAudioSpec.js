@@ -54,7 +54,7 @@
   };
 
 
-  window.CompatabilityTests = window.CompatabilityTests || {};
-  window.CompatabilityTests.WebAudioSpec = webAudioSpec;
+  window.CompatibilityTests = window.CompatibilityTests || {};
+  window.CompatibilityTests.WebAudioSpec = webAudioSpec;
 
 })();

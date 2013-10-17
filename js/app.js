@@ -1,5 +1,5 @@
 /*exported main */
-/*globals CompatabilityTests, ga */
+/*globals CompatibilityTests, ga */
 
 /**
  * [main description]
@@ -15,10 +15,10 @@
 
 function main(settings) {
 
-  var tester = CompatabilityTests.Tester;
-  var reporters = CompatabilityTests.Reporters;
+  var tester = CompatibilityTests.Tester;
+  var reporters = CompatibilityTests.Reporters;
 
-  var testSuite = tester.createTestSuite('Web Audio API', CompatabilityTests.WebAudioSpec );
+  var testSuite = tester.createTestSuite('Web Audio API', CompatibilityTests.WebAudioSpec );
   var runResults = tester.runTests(testSuite, 'Web Audio API');
   reporters.reportToDom(runResults, document.getElementById('results'));
   // Prevent running the tests on development

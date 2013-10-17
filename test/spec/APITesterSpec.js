@@ -1,8 +1,8 @@
-/*globals describe, it, expect ,CompatabilityTests */
+/*globals describe, it, expect ,CompatibilityTests */
 
 describe("APITeser", function() {
-  var tester = CompatabilityTests.Tester;
-  var reporters = CompatabilityTests.Reporters;
+  var tester = CompatibilityTests.Tester;
+  var reporters = CompatibilityTests.Reporters;
   var apiSpec = {
     'Root1': {
       instanceProperties: {

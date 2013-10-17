@@ -1,4 +1,4 @@
-/*globals CompatabilityTests */
+/*globals CompatibilityTests */
 
 (function(tester) {
 
@@ -153,15 +153,15 @@
       if (result.result !== resultType['header']) {
         //category, action, opt_label, opt_value, opt_noninteraction]
         var value = (result.result === resultType['pass']) ? 1 : 0;
-        ga('send', 'event', 'WebAudioCompatability', result.name, resultName[result.result], value);
+        ga('send', 'event', 'WebAudioCompatibility', result.name, resultName[result.result], value);
       }
     }
   }
 
 
   // Exports
-  window.CompatabilityTests = window.CompatabilityTests || {};
-  window.CompatabilityTests.Reporters = {
+  window.CompatibilityTests = window.CompatibilityTests || {};
+  window.CompatibilityTests.Reporters = {
     reportToGoogleAnalytics: reportToGoogleAnalytics,
     reportToBrowserScope: reportToBrowserScope,
     reportToDom: reportToDom,
@@ -169,4 +169,4 @@
     toKeyValue: toKeyValue,
   };
 
-})(CompatabilityTests.Tester);
+})(CompatibilityTests.Tester);

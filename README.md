@@ -1,4 +1,4 @@
-webaudio-compatability
+webaudio-compatibility
 ======================
 
 Web Audio API browser compatibility tests.
@@ -8,7 +8,7 @@ Includes a simple html reporter and the option to send the results to browsersco
 
 Live application (please visit it to add the statistics about your browser):
 
-__[http://www.doboism.com/projects/webaudio-compatability](http://www.doboism.com/projects/webaudio-compatability)__
+__[http://www.doboism.com/projects/webaudio-compatibility](http://www.doboism.com/projects/webaudio-compatibility)__
 
 
 

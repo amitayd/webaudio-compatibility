@@ -164,8 +164,8 @@
   /**
    * Exports
    */
-  window.CompatabilityTests = window.CompatabilityTests || {};
-  window.CompatabilityTests.Tester = {
+  window.CompatibilityTests = window.CompatibilityTests || {};
+  window.CompatibilityTests.Tester = {
     createTestSuite: createTestSuite,
     runTests: runTests,
     resultType: resultType,
