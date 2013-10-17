@@ -23,8 +23,7 @@ function main(settings) {
   reporters.reportToDom(runResults, document.getElementById('results'));
   // Prevent running the tests on development
   if (window.location.host.indexOf(settings.liveDomain) >= 0) {
-    var resultsKv = reporters.toKeyValue(runResults);
-    reporters.reportToBrowserScope(resultsKv, settings.browserScopeKey, settings.sandBoxId);
+    reporters.reportToBrowserScope(runResults, settings.browserScopeKey, settings.sandBoxId);
     reporters.reportToGoogleAnalytics(runResults, ga);
   }
 
@@ -32,7 +31,15 @@ function main(settings) {
   if (settings.browserScopeContainerId) {
     var newScript = document.createElement('script'),
       container = document.getElementById(settings.browserScopeContainerId);
-    newScript.src = 'http://www.browserscope.org/user/tests/table/' + settings.browserScopeKey + '?o=js&v=3';
+    newScript.src = 'http://www.browserscope.org/user/tests/table/' + 
+        settings.browserScopeKey + '?o=js&v=3&f=AudioContext,AudioContext.correctName,AudioContext.createOscillator';
     container.appendChild(newScript);
   }
+
+  if (settings.browserScopeLinkId) {
+    var linkEl = document.getElementById(settings.browserScopeLinkId);
+    linkEl.href = 'http://www.browserscope.org/user/tests/table/' + settings.browserScopeKey + '?v=3&layout=simple';
+  }
+
+
 }

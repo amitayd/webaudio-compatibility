@@ -100,16 +100,17 @@
 
   /**
    * Send results to browserScope
-   * @param  {Object} resultsKV   results to send (in Key-Value form)
+   * @param  {Object} resultsObj   results to send 
    * @param  {String} testKey   test key
    * @param  {String} sandBoxId sandBoxId (optional)
    * @return the sent results object
    */
 
-  function reportToBrowserScope(resultsKV, testKey, sandBoxId) {
+  function reportToBrowserScope(resultsObj, testKey, sandBoxId) {
+    var resultsKV = toKeyValue(resultsObj);
+
     // convert the results to browserScope Key-Value
     var bsResults = {};
-
     //TODO: use a map function instead
     for (var key in resultsKV) {
       if (resultsKV.hasOwnProperty(key)) {
