@@ -26,7 +26,7 @@
           alternativeNames: ['createDelayNode'],
         },
         'createScriptProcessor': {
-          alternativeNames: ['createJavascriptNode'],
+          alternativeNames: ['createJavaScriptNode'],
         },
         'destination': {},
         'sampleRate': {},
@@ -46,7 +46,9 @@
         'createChannelSplitter': {},
         'createChannelMerger': {},
         'createDynamicsCompressor': {},
-        'createPeriodicWave': {},
+        'createPeriodicWave': {
+          alternativeNames: ['createWaveTable']
+        },
       },
     },
   };
