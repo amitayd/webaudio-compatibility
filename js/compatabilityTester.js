@@ -1,9 +1,19 @@
 (function() {
-  /**
-   * [webAudioTest Web Audio API compatability tests]
-   * @param  Window window [description]
-   * @return Object The module
-   */
+
+
+  var resultType = {
+    pass: 0,
+    fail: 1,
+    ignore: 2,
+    error: 3,
+    header: 4
+  };
+
+  // Create an inverse map to convert from name to type
+  var resultName = {};
+  for (var resultTypeKey in resultType) {
+    resultName[resultType[resultTypeKey]] = resultTypeKey;
+  }
 
 
   var createTestFromDefinition = function(propertyName, definition, parentName, objectConstructors) {
@@ -83,28 +93,12 @@
     return createdTest;
   };
 
-
-  var resultType = {
-    pass: 0,
-    fail: 1,
-    ignore: 2,
-    error: 3,
-    header: 4
-  };
-
-  // Create an inverse map to convert from name to type
-  var resultName = {};
-  for (var resultTypeKey in resultType) {
-    resultName[resultType[resultTypeKey]] = resultTypeKey;
-  }
-
-
   /**
    * Run the test suite
    * @return Object the test results
    */
 
-  function runTests(testSuite) {
+  function runTests(testSuite, name) {
     function runTest(test, testName, ignore) {
       var error = null;
       var result;
@@ -124,12 +118,13 @@
         result = resultType['header'];
       }
 
-      results.push({
+      var results = {
         name: testName,
         result: result,
         error: error,
-        desc: test.desc
-      });
+        desc: test.desc,
+        subTests: []
+      };
 
       // execute sub tests
       if (test.subTests) {
@@ -137,21 +132,16 @@
         var subTestKey;
         for (subTestKey in test.subTests) {
           if (test.subTests.hasOwnProperty(subTestKey)) {
-            var subTestName = testName ? testName + '_' + subTestKey : subTestKey;
-            runTest(test.subTests[subTestKey], subTestName, ignoreSub);
+            results.subTests.push(runTest(test.subTests[subTestKey], subTestKey, ignoreSub));
           }
         }
       }
+
+      return results;
     }
 
-    var results = [];
-    runTest(testSuite, '');
-    //Hackish
-    results[0].name = 'Web Audio API';
-    return results;
+    return runTest(testSuite, name);
   }
-
-
 
   var createTestSuite = function(name, definitions) {
     var suite = {
@@ -168,10 +158,8 @@
         suite.subTests[name] = createTestFromDefinition(name, definitions[name], 'window', objects);
       }
     }
-
     return suite;
   };
-
 
   /**
    * Exports

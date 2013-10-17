@@ -18,10 +18,8 @@ function main(settings) {
   var tester = CompatabilityTests.Tester;
   var reporters = CompatabilityTests.Reporters;
 
-  console.log(tester);
-
   var testSuite = tester.createTestSuite('Web Audio API', CompatabilityTests.WebAudioSpec );
-  var runResults = tester.runTests(testSuite);
+  var runResults = tester.runTests(testSuite, 'Web Audio API');
   reporters.reportToDom(runResults, document.getElementById('results'));
   // Prevent running the tests on development
   if (window.location.host.indexOf(settings.liveDomain) >= 0) {

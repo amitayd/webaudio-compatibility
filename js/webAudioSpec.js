@@ -12,7 +12,6 @@
                 'isEnum': {
                   desc: '"type" property as an enumerated string',
                   test: function(objects) {
-                    console.log('objects', objects);
                     return typeof objects['window.AudioContext.createOscillator']().type === 'string';
                   }
                 }

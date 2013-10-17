@@ -6,13 +6,40 @@
   var resultType = tester.resultType;
   var resultName = tester.resultName;
 
-    /**
+
+  function flattenResult(result) {
+
+    var results = [];
+    function addResult(result, parentName, isRoot) {
+
+      var fullName = (parentName ? parentName + '.' : '') + result.name;
+      // TODO: add some util to map + filter out
+      results.push({
+        name: fullName,
+        desc: result.desc,
+        result: result.result,
+        error: result.error
+      });
+
+      for (var i = 0; i < result.subTests.length; i++) {
+        addResult(result.subTests[i], isRoot ? '' : fullName, false);
+      }
+    }
+
+    addResult(result, '', true);
+    return results;
+  }
+
+  /**
    * Create an html report for the given result
    * @param  {Object} results     results to create the report for
    * @param  {DomElement} placeHolder where to put the results
+   * @param  {depth} nesting depth of the element  (optional)
    * @return {void}
    */
-  function reportToDom(results, placeHolder) {
+
+  function reportToDom(result, placeHolder, depth) {
+    depth = depth || 0;
 
     function appendElement(parent, tag, text, className) {
       var el = document.createElement(tag);
@@ -32,19 +59,23 @@
       return '';
     }
 
-    for (var i = 0; i < results.length; i++) {
-      var result = results[i];
-      var resultEl = appendElement(placeHolder, 'div', null, 'bar');
-      var resultResult = resultName[result.result];
-      // TODO: Ugly, extend the resultName to hold richer data.
-      if (resultResult === 'header') {
-        resultResult = '';
-      }
-      appendElement(resultEl, 'span', result.name, 'name');
-      appendElement(resultEl, 'span', resultResult, 'result ' + resultResult);
-      appendElement(resultEl, 'span', tryToString(result.desc), 'description');
-      appendElement(resultEl, 'span', tryToString(result.error), 'errorDetails');
+    var resultEl = appendElement(placeHolder, 'div', null, 'bar');
+    var resultResult = resultName[result.result];
+    // TODO: Ugly, extend the resultName to hold richer data.
+    if (resultResult === 'header') {
+      resultResult = '';
     }
+    var nameEl = appendElement(resultEl, 'span', result.name, 'name');
+    // TODO: find less ugly way of shifting just the name
+    nameEl.style.textIndent =  depth * 10 + 'px';
+
+    appendElement(resultEl, 'span', resultResult, 'result ' + resultResult);
+    appendElement(resultEl, 'span', tryToString(result.desc), 'description');
+    appendElement(resultEl, 'span', tryToString(result.error), 'errorDetails');
+    for (var i = 0; i < result.subTests.length; i++) {
+      reportToDom(result.subTests[i], placeHolder, depth + 1);
+    }
+
   }
 
 
@@ -56,7 +87,8 @@
    * @return the sent results object
    */
 
-  function reportToBrowserScope(results, testKey, sandBoxId) {
+  function reportToBrowserScope(resultObject, testKey, sandBoxId) {
+    var results = flattenResult(resultObject);
     // convert the results to browserScope Key-Value
     var bsResults = {};
     for (var i = 0; i < results.length; i++) {
@@ -74,7 +106,7 @@
 
     // browser scope script uses this global
     window._bTestResults = bsResults;
-    console.log('bsResults', bsResults);
+    //console.log('bsResults', bsResults);
 
     var newScript = document.createElement('script'),
       firstScript = document.getElementsByTagName('script')[0];
@@ -94,7 +126,8 @@
    * @return {void}
    */
 
-  function reportToGoogleAnalytics(results, ga) {
+  function reportToGoogleAnalytics(resultObject, ga) {
+    var results = flattenResult(resultObject);
     for (var i = 0; i < results.length; i++) {
       var result = results[i];
       if (result.result !== resultType['header']) {
@@ -111,7 +144,8 @@
   window.CompatabilityTests.Reporters = {
     reportToGoogleAnalytics: reportToGoogleAnalytics,
     reportToBrowserScope: reportToBrowserScope,
-    reportToDom: reportToDom
+    reportToDom: reportToDom,
+    flattenResult: flattenResult
   };
 
 })(CompatabilityTests.Tester);
