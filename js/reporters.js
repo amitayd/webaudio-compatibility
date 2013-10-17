@@ -10,6 +10,7 @@
   function flattenResult(result) {
 
     var results = [];
+
     function addResult(result, parentName, isRoot) {
 
       var fullName = (parentName ? parentName + '.' : '') + result.name;
@@ -18,6 +19,7 @@
         name: fullName,
         desc: result.desc,
         result: result.result,
+        resultName: resultName[result.result],
         error: result.error
       });
 
@@ -28,6 +30,24 @@
 
     addResult(result, '', true);
     return results;
+  }
+
+  /**
+   * Returns the results as a key-value object.
+   * @param  {Object} resultObj
+   * @return {Object} an object with the keys being the reuslt name
+   */
+
+  function toKeyValue(resultObj) {
+    var resultsKV = {};
+    var results = flattenResult(resultObj);
+    for (var i = 0; i < results.length; i++) {
+      var result = results[i];
+      if (result.result !== resultType['header']) {
+        resultsKV[result.name] = result;
+      }
+    }
+    return resultsKV;
   }
 
   /**
@@ -67,7 +87,7 @@
     }
     var nameEl = appendElement(resultEl, 'span', result.name, 'name');
     // TODO: find less ugly way of shifting just the name
-    nameEl.style.textIndent =  depth * 10 + 'px';
+    nameEl.style.textIndent = depth * 10 + 'px';
 
     appendElement(resultEl, 'span', resultResult, 'result ' + resultResult);
     appendElement(resultEl, 'span', tryToString(result.desc), 'description');
@@ -78,29 +98,28 @@
 
   }
 
-
   /**
    * Send results to browserScope
-   * @param  {Object} results   results to send
+   * @param  {Object} resultsKV   results to send (in Key-Value form)
    * @param  {String} testKey   test key
    * @param  {String} sandBoxId sandBoxId (optional)
    * @return the sent results object
    */
 
-  function reportToBrowserScope(resultObject, testKey, sandBoxId) {
-    var results = flattenResult(resultObject);
+  function reportToBrowserScope(resultsKV, testKey, sandBoxId) {
     // convert the results to browserScope Key-Value
     var bsResults = {};
-    for (var i = 0; i < results.length; i++) {
-      var result = results[i];
-      if (result.result !== resultType['header']) {
+
+    //TODO: use a map function instead
+    for (var key in resultsKV) {
+      if (resultsKV.hasOwnProperty(key)) {
         // Failed by default
         var bsResult = 0;
         // Only if passed then 1
-        if (result.result === resultType['pass']) {
+        if (resultsKV[key].result === resultType['pass']) {
           bsResult = 1;
         }
-        bsResults[result.name] = bsResult;
+        bsResults[key] = bsResult;
       }
     }
 
@@ -145,7 +164,8 @@
     reportToGoogleAnalytics: reportToGoogleAnalytics,
     reportToBrowserScope: reportToBrowserScope,
     reportToDom: reportToDom,
-    flattenResult: flattenResult
+    flattenResult: flattenResult,
+    toKeyValue: toKeyValue,
   };
 
 })(CompatabilityTests.Tester);

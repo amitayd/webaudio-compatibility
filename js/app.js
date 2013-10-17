@@ -23,7 +23,8 @@ function main(settings) {
   reporters.reportToDom(runResults, document.getElementById('results'));
   // Prevent running the tests on development
   if (window.location.host.indexOf(settings.liveDomain) >= 0) {
-    reporters.reportToBrowserScope(runResults, settings.browserScopeKey, settings.sandBoxId);
+    var resultsKv = reporters.toKeyValue(runResults);
+    reporters.reportToBrowserScope(resultsKv, settings.browserScopeKey, settings.sandBoxId);
     reporters.reportToGoogleAnalytics(runResults, ga);
   }
 
