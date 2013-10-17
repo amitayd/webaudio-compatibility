@@ -2,7 +2,6 @@ body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
 
 .html-reporter { font-size: 11px; font-family: Monaco, "Lucida Console", monospace; line-height: 14px; color: #333333; }
 .html-reporter .bar { line-height: 28px; font-size: 14px; display: block; color: black; border-bottom: 1px solid #999999; border-collapse: false}
-.html-reporter .subTests { line-height: 28px; font-size: 14px; display: block; color: black;}
 .subTests .name { width: 400px;}
 .html-reporter span {display: inline-block;}
 .html-reporter .name { width: 400px;}
@@ -13,6 +12,6 @@ body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
 .html-reporter .pass { background-color: #a6b779; }
 .html-reporter .ignore { background-color: #bababa; }
 .html-reporter .error { background-color: #bababa; }
-.html-reporter .bar.menu { background-color: #fff; color: #aaaaaa; }
-.html-reporter .bar.menu a { color: #333333; }
-.html-reporter .bar a { color: white; }
+
+.fullResults {font-family: Monaco, "Lucida Console", monospace; width:500; background-color: #FFFFFF;}
+.fullResults a {font-size: 18px; font-weight: bolder}
