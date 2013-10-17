@@ -1,5 +1,5 @@
 /*exported main */
-/*globals webAudioTest, ga */
+/*globals CompatabilityTests, ga */
 
 /**
  * [main description]
@@ -14,15 +14,22 @@
  */
 
 function main(settings) {
-  var tester = webAudioTest(window);
-  var runResults = tester.runTests();
-  tester.createReport(runResults, document.getElementById('results'));
+
+  var tester = CompatabilityTests.Tester;
+  var reporters = CompatabilityTests.Reporters;
+
+  console.log(tester);
+
+  var testSuite = tester.createTestSuite('Web Audio API', CompatabilityTests.WebAudioSpec );
+  var runResults = tester.runTests(testSuite);
+  reporters.reportToDom(runResults, document.getElementById('results'));
   // Prevent running the tests on development
   if (window.location.host.indexOf(settings.liveDomain) >= 0) {
-    tester.reportToBrowserScope(runResults, settings.browserScopeKey, settings.sandBoxId);
-    tester.reportToGoogleAnalytics(runResults, ga);
+    reporters.reportToBrowserScope(runResults, settings.browserScopeKey, settings.sandBoxId);
+    reporters.reportToGoogleAnalytics(runResults, ga);
   }
 
+  //load browser scope results
   if (settings.browserScopeContainerId) {
     var newScript = document.createElement('script'),
       container = document.getElementById(settings.browserScopeContainerId);

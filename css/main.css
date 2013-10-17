@@ -1,9 +1,9 @@
 body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
 
 .html-reporter { font-size: 11px; font-family: Monaco, "Lucida Console", monospace; line-height: 14px; color: #333333; }
-.html-reporter .bar { line-height: 28px; font-size: 14px; display: block; color: black; }
+.html-reporter .bar { line-height: 28px; font-size: 14px; display: block; color: black; border-bottom: 1px solid #999999}
 .html-reporter span {display: inline-block;}
-.html-reporter .name { width: 250px;}
+.html-reporter .name { width: 400px;}
 .html-reporter .errorDetails { width: 150px;}
 .html-reporter .description { width: 300px; font-size:8px; line-height: 8px}
 .html-reporter .result { width: 50px;}
