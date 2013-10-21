@@ -3,9 +3,9 @@
     'AudioContext': {
       useNew: true,
       alternativeNames: ['webkitAudioContext'],
-      instanceProperties: {
+      operations: {
         'createOscillator': {
-          instanceProperties: {
+          operations: {
             'start': {},
             'type': {
               customTests: {

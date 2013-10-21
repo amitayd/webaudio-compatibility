@@ -56,10 +56,10 @@
       subTests: {}
     };
 
-    for (var subProperty in definition.instanceProperties) {
-      if (definition.instanceProperties.hasOwnProperty(subProperty)) {
-        var propDefinition = definition.instanceProperties[subProperty];
-        createdTest.subTests[subProperty] = createTestFromDefinition(subProperty, propDefinition, propertyFullName, objectConstructors);
+    for (var operationName in definition.operations) {
+      if (definition.operations.hasOwnProperty(operationName)) {
+        var propDefinition = definition.operations[operationName];
+        createdTest.subTests[operationName] = createTestFromDefinition(operationName, propDefinition, propertyFullName, objectConstructors);
       }
     }
 
