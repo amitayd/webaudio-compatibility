@@ -32,13 +32,13 @@ function main(settings) {
     var newScript = document.createElement('script'),
       container = document.getElementById(settings.browserScopeContainerId);
     newScript.src = 'http://www.browserscope.org/user/tests/table/' + 
-        settings.browserScopeKey + '?o=js&v=3&f=AudioContext,AudioContext.correctName,AudioContext.createOscillator';
+        settings.browserScopeKey + '?o=js&v=3&f=AudioContext,AudioContext.correctName,AudioContext.createOscillator&highlight=1';
     container.appendChild(newScript);
   }
 
   if (settings.browserScopeLinkId) {
     var linkEl = document.getElementById(settings.browserScopeLinkId);
-    linkEl.href = 'http://www.browserscope.org/user/tests/table/' + settings.browserScopeKey + '?v=3&layout=simple';
+    linkEl.href = 'http://www.browserscope.org/user/tests/table/' + settings.browserScopeKey + '?v=3&highlight=1&layout=simple';
   }
 
 
