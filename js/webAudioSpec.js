@@ -1,6 +1,7 @@
 (function() {
   var webAudioSpec = {
     'AudioContext': {
+      useSingle: true,
       useNew: true,
       alternativeNames: ['webkitAudioContext'],
       operations: {

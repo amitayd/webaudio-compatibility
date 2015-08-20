@@ -45,6 +45,14 @@
     };
 
     objectConstructors[propertyFullName] = construct;
+    // support a single instance (for when creating multiple instances is a problem,
+    // for example with AudioContext instanc elimit)
+    if (definition.useSingle) {
+      var singletonInstance = construct();
+      objectConstructors[propertyFullName] = function() {
+        return singletonInstance;
+      };
+    }
 
     var testFunction = function() {
       return findProperty() !== false;
